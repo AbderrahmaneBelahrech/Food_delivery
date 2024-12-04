@@ -1,0 +1,89 @@
+<div class="container">
+  <app-header></app-header>
+
+  <div class="header">
+    <img
+      *ngIf="meals[0]?.imageUrl && meals[0]?.imageUrl.length > 0"
+      [src]="meals[0]?.imageUrl"
+      alt="{{ restaurant.name }}"
+      class="background-image"
+    />
+  </div>
+  <div style="display: flex; justify-content: space-between; gap: 40px">
+    <div class="restau-info">
+      <div class="info-card">
+        <div class="logo-wrapper">
+          <img [src]="restaurant.logoRestau" alt="{{ restaurant.name }}" class="logo" />
+        </div>
+        <h3 style="margin-top: 50px">{{ restaurant.name }}</h3>
+        <p class="info">{{ restaurant.rating }} | 15-25' | 5.00 MAD | Prime</p>
+      </div>
+      <div class="content">
+        <input
+          type="text"
+          placeholder="Rechercher dans le menu de {{ restaurant.name }}"
+          class="search-input"
+          [(ngModel)]="searchQuery"
+          (input)="filterMealsByName()"
+        />
+        <h2 class="section-title">Menu</h2>
+        <div class="meal-cards">
+          <div
+            *ngFor="let meal of filteredMeals"
+            class="meal-card"
+            (click)="openDialog(meal)"
+          >
+            <img [src]="meal.imageUrl" alt="{{ meal.name }}" class="meal-image" />
+            <div class="meal-info">
+              <h3>{{ meal.name }}</h3>
+              <p>{{ meal.description }}</p>
+              <div class="meal-footer">
+                <span>{{ meal.price }} MAD</span>
+                <button class="add-button">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="order-summary">
+      <h3>Cart</h3>
+      <div class="cart-items" *ngIf="cartItems.length > 0; else emptyCart">
+        <div *ngFor="let item of cartItems" class="cart-item">
+          <img [src]="item.imageUrl" alt="{{ item.name }}" class="cart-image" />
+          <div class="cart-details">
+            <p class="cart-item-name">{{ item.name }}</p>
+            <div class="cart-qt-price">
+              <p style="font-size: 14px; color: gray">{{ item.quantity }}x</p>
+              <p style="font-weight: bold">{{ item.price * item.quantity }} MAD</p>
+            </div>
+          </div>
+          <div class="cart-actions">
+            <button class="icon-button plus-button" (click)="increaseQuantity(item)">
+              <i class="fas fa-plus"></i>
+            </button>
+            <button class="icon-button minus-button" (click)="decreaseQuantity(item)">
+              <i class="fas fa-minus"></i>
+            </button>
+            <button class="icon-button delete-button" (click)="deleteItem(item.id)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #emptyCart>
+        <p class="empty-cart">Your cart is empty. Add some items!</p>
+      </ng-template>
+
+      <div *ngIf="cartItems.length > 0" class="cart-total">
+        Total: {{ calculateTotal() }} MAD
+      </div>
+
+      <button class="pay-btn" [disabled]="cartItems.length === 0" (click)="navigateToCheckout()">
+        Checkout
+      </button>
+      
+    </div>
+  </div>
+</div>

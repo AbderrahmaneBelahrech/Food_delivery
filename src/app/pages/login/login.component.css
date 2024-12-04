@@ -1,0 +1,86 @@
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: url('../../../assets/login-background.jpg') center/cover no-repeat;
+    padding: 20px;
+  }
+  .auth-container::before {
+    content: "";
+    position: absolute;
+    
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 87, 34, 0.5); /* Light orange overlay with 40% opacity */
+    z-index: 0;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 1rem;
+    z-index: 1;
+    
+  }
+  
+  
+  .logo {
+    width: 150px;
+    border-radius: 15px;
+  }
+  
+  .auth-card {
+    width: 100%;
+    max-width: 350px;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .login-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-field {
+    width: 100%;
+  }
+  
+  .forgot-password {
+    text-align: right;
+    margin-bottom: 1rem;
+    color: #ff5722;
+    text-decoration: underline;
+  }
+  
+  .forgot-password a {
+    color: #ff5722;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .login-button {
+    width: 100%;
+    background-color: #ff5722;
+    color: white;
+    font-weight: bold;
+    border-radius: 25px;
+    border-width: 0;
+    letter-spacing: 2.5px;
+    padding: 10px 0;
+    margin-top: 1rem;
+  }
+  
+  .signup-link {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  .signup-link a {
+    color: #ff5722;
+    text-decoration: underline;
+  }
+  

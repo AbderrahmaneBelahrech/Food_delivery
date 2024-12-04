@@ -1,0 +1,14 @@
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+router-outlet {
+  display: flex;
+  flex-direction: column;
+}
+
+app-footer {
+  margin-top: auto; 
+}

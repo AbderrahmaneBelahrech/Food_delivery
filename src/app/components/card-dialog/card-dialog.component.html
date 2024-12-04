@@ -1,0 +1,27 @@
+<div class="dialog-container">
+  <div class="left-section">
+    <h3 class="meal-name">{{ data.name }}</h3>
+    <p><strong>Price:</strong> {{ data.price }} MAD</p>
+    <p><strong>Description:</strong> {{ data.description }}</p>
+    <p><strong>Ingredients:</strong></p>
+    <ul>
+      <li *ngFor="let ingredient of data.ingredients">{{ ingredient }}</li>
+    </ul>
+  </div>
+  <div class="right-section">
+    <img [src]="data.imageUrl" alt="{{ data.name }}" class="product-image" />
+    <div class="quantity-selector">
+      <button class="button-add-minus" mat-icon-button (click)="decreaseQuantity()">-</button>
+      <span style="font-weight: bold;">{{ quantity }}</span>
+      <button class="button-add-minus" mat-icon-button (click)="increaseQuantity()">+</button>
+    </div>
+    <button
+      class="button-add-total"
+      mat-button
+      [disabled]="!quantity"
+      (click)="closeDialog()"
+    >
+      <span style="color: white;">Add {{ quantity }} for {{ totalPrice() }} MAD</span>
+    </button>
+  </div>
+</div>

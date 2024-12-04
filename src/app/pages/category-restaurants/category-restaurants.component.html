@@ -1,0 +1,22 @@
+<app-header></app-header>
+
+<div *ngIf="noRestaurantsFound; else restaurantList">
+  <p>Aucun restaurant ne propose cette catégorie pour le moment.</p>
+</div>
+
+<ng-template #restaurantList>
+  <div class="restaurant-listt">
+    <div class="restaurant-cardd" *ngFor="let restaurant of restaurants"
+    (click)="viewRestaurantDetails(restaurant.id)"
+    >
+      <div class="image">
+        <img [src]="restaurant.logoRestau" alt="{{ restaurant.name }}">
+      </div>
+      <div class="detailss">
+        <h2>{{ restaurant.name }}</h2>
+        <p class="category">{{ restaurant.category }}</p>
+        <p class="rating">Note : {{ restaurant.rating }} ⭐</p>
+      </div>
+    </div>
+  </div>
+</ng-template>

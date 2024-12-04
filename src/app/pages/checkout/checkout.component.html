@@ -1,0 +1,88 @@
+<div class="checkout-container">
+  <main class="checkout-content">
+    <section class="shipping-info">
+      <h2>Checkout</h2>
+      <p style="font-size: 26;">Shipping Information</p>
+      <form class="form">
+        <label>
+          Full name<span>*</span>
+          <input type="text" placeholder="Enter full name" required />
+        </label>
+
+        <label>
+          Phone number<span>*</span>
+          <div class="phone-input">
+            <input type="tel" placeholder="Enter phone number" required />
+          </div>
+        </label>
+
+        <label>
+          Address<span>*</span>
+          <input type="text" placeholder="Enter shipping Address" required />
+        </label>
+
+        <div class="address-fields">
+          <label>
+            City<span>*</span>
+            <input type="text" placeholder="Enter city" />
+          </label>
+          <label>
+            Region <span>*</span>
+            <select style="padding-top: 10px; padding-bottom: 10px; max-height: 50px; overflow-y: auto;">
+              <option>Choose state</option>
+              <option>Chaouia-Ouardigha</option>
+              <option>Doukkala-Abda</option>
+              <option>Fès-Boulemane</option>
+              <option>Gharb-Chrarda-Beni Hssen</option>
+              <option>Grand Casablanca</option>
+              <option>Guelmim-Es Semara</option>
+              <option>Laâyoune-Boujdour-Sakia el Hamra</option>
+              <option>Doukkala-Abda</option>
+              <option>Marrakech-Tensift-Al Haouz</option>
+              <option>Meknès-Tafilalet</option>
+              <option>L'Oriental</option>
+              <option>Oued ed Dahab-Lagouira</option>
+              <option>Rabat-Salé-Zemmour-Zaër</option>
+              <option>Souss-Massa</option>
+              <option>Tadla-Azilal</option>
+            </select>
+          </label>
+          <label>
+            ZIP Code<span>*</span>
+            <input type="text" placeholder="Enter ZIP code" />
+          </label>
+        </div>
+      </form>
+    </section>
+
+    <section class="review-cart">
+      <h2>Review your cart</h2>
+
+      <!-- Dynamically display cart items -->
+      <div class="cart-items">
+        <div *ngFor="let item of cartItems" class="cart-item">
+          <img [src]="item.imageUrl" alt="{{ item.name }}" />
+          <div>
+            <p>{{ item.name }}</p>
+            <div class="cart-qt-price">
+              <p style="font-size: 14px; color: gray;">{{ item.quantity }}x</p>
+              <p style="font-weight: bold;">{{ item.price * item.quantity }} MAD</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="summary">
+
+        <p>Total: <span>{{ total }} MAD</span></p>
+      </div>
+
+      <button class="pay-btn" (click)="payNow()">Pay Now</button>
+      <p class="secure-checkout">
+        <span>Secure Checkout - SSL Encrypted</span>
+        <br />
+        Ensuring your financial and personal details are secure during every transaction.
+      </p>
+    </section>
+  </main>
+</div>

@@ -1,0 +1,45 @@
+<div class="auth-container">
+    <div class="header">
+      <img src="../../../assets/logo.png" alt="Quick Foodie" class="logo" />
+    </div>
+  
+    <mat-card class="auth-card">
+      <h2 class="login-title">Login</h2>
+      <form>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Email</mat-label>
+          <mat-icon matPrefix>email</mat-icon>
+          <input
+            matInput
+            type="email"
+            [(ngModel)]="email"
+            [ngModelOptions]="{ standalone: true }"
+            placeholder="Enter Email"
+          />
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Password</mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+          <input
+            matInput
+            type="password"
+            [(ngModel)]="password"
+            [ngModelOptions]="{ standalone: true }"
+            placeholder="Enter Password"
+          />
+        </mat-form-field>
+  
+        <div class="forgot-password">
+          <a href="#">Forgot Password?</a>
+        </div>
+  
+        <button class="login-button" (click)="login()">LOGIN</button>
+  
+        <div class="signup-link">
+          Don’t have an account? <a routerLink="/register">Sign up</a>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+  

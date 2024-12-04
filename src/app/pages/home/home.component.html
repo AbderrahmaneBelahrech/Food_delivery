@@ -1,0 +1,58 @@
+<div class="container">
+  <app-header></app-header>
+  <div class="section">
+    <h1>Welcome</h1>
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="Search your favorite restaurant"
+        [(ngModel)]="searchQuery"
+        (input)="filterRestaurants()"
+        class="search-input"
+      />
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Meilleures Catégories</h2>
+    <div class="categories-container">
+      <span
+        *ngFor="let category of categories"
+        class="category-tag"
+        (click)="viewCategoryRestaurants(category.id)"
+      >
+        {{ category.name }}
+      </span>
+    </div>
+  </div>
+
+  <!-- <div class="section1">
+    <div class="categories-container">
+      <span>
+        <i
+          class="fa-solid fa-angles-down"
+          style="font-size: 2em; margin-top: 80px; color: green;"
+        ></i>
+      </span>
+    </div>
+  </div> -->
+
+  <div class="restaurant-list">
+    <div
+      class="restaurant-card"
+      *ngFor="let restaurant of filteredRestaurants.slice(0, 8)"
+      (click)="viewRestaurantDetails(restaurant.id)"
+    >
+      <img
+        [src]="restaurant.imageRestau"
+        alt="{{ restaurant.name }}"
+        class="restaurant-image"
+      />
+      <h3>{{ restaurant.name }}</h3>
+      <div class="info">
+        <i class="fas fa-star star-icon"></i>
+        <span>{{ restaurant.rating }}%</span>
+      </div>
+    </div>
+  </div>
+</div>

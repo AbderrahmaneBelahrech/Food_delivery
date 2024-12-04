@@ -1,0 +1,166 @@
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f8f9fb;
+  color: #333;
+}
+
+/* Override specific elements for consistency */
+h1, h2, h3, h4, h5, h6, label, input, button, select, textarea {
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 400; /* Normal weight */
+}
+
+/* Optional: Adjust font sizes */
+h2 {
+  font-size: 24px;
+  font-weight: 600; /* Bold for headings */
+}
+
+input, textarea, button, select {
+  font-size: 14px;
+  font-weight: 400;
+}
+.checkout-container {
+  background: #f8f9fb;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+
+.checkout-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  max-width: 1200px;
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.shipping-info {
+  padding: 20px;
+  border-right: 1px solid #ddd;
+}
+
+.review-cart {
+  padding: 20px;
+}
+
+h2,
+h3 {
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.form label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.form label span {
+  color: red;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+/* Placeholder Color */
+input::placeholder,
+textarea::placeholder {
+  color: #b9c0cc; /* Placeholder color */
+  font-size: 14px; /* Optional: adjust font size */
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+  color: #b9c0cc; /* Keeps placeholder consistent on focus */
+  opacity: 1;
+}
+
+/* Active Input Border Color */
+input:focus,
+textarea:focus,
+select:focus {
+  border: 2px solid #005CBB; /* Active border color */
+  outline: none; /* Removes the default outline */
+  border-radius: 4px; /* Keeps border-radius consistent */
+}
+
+
+.address-fields {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+
+.cart-items {
+  margin-bottom: 20px;
+}
+
+.cart-item {
+  display: grid;
+  align-items: center;
+  border: 1px solid #EDEEF1;
+  padding-right: 10px;
+  border-radius: 4px;
+  grid-template-columns: 50px 1fr;
+  gap: 30px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item img {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.cart-qt-price{
+  display: flex;
+  justify-content: space-between;
+}
+
+.discount {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.summary p {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  font-weight: 500;
+}
+
+.pay-btn {
+  width: 100%;
+  padding: 10px;
+  background: #14a082;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.secure-checkout {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 20px;
+}
