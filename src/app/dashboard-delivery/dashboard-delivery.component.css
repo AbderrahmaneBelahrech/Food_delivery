@@ -1,0 +1,98 @@
+/* Style du header */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ff5722;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Conteneur du logo */
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Image du logo */
+.logo {
+  height: 55px;
+  margin-right: 10px;
+}
+
+/* Titre de l'application */
+.app-title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/* Conteneur de déconnexion */
+.logout-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+/* Icône de déconnexion */
+.logout-icon {
+  font-size: 1.5em;
+  margin-right: 5px;
+}
+
+/* Texte de déconnexion */
+.logout-text {
+  font-size: 1em;
+}
+
+/* Effet au survol */
+.logout-container:hover {
+  opacity: 0.8;
+}
+/* Style pour le conteneur des cartes */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Style pour chaque carte */
+.card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  width: 250px; /* Largeur de chaque carte */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Effet au survol des cartes */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Titre de la commande dans la carte */
+.card h3 {
+  font-size: 1.2em;
+  color: #ff5722;
+  margin-bottom: 15px;
+}
+
+/* Contenu des informations de la carte */
+.card p {
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Style du texte quand il n'y a aucune commande */
+.no-orders {
+  text-align: center;
+  font-size: 1.2em;
+  color: #ff5722;
+}

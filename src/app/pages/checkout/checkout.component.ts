@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
+import { loadStripe } from '@stripe/stripe-js';
 
 @Component({
   selector: 'app-checkout',
@@ -9,24 +11,32 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class CheckoutComponent implements OnInit {
   cartItems: any[] = [];
   total: number = 0;
-  shippingInfo: any = {}; // Pour les informations de livraison
+  // shippingInfo: any = {};
+  shippingInfo = {
+    fullName: '',
+    phoneNumber: '',
+    address: '',
+    city: '',
+    region: '',
+    zipCode: ''
+  };
+  stripe: any;
+  restaurantId: string | null = null;
+  
 
-  // Variables pour les champs de livraison (vous pouvez les lier aux inputs du formulaire)
-  fullName: string = '';
-  phoneNumber: string = '';
-  address: string = '';
-  city: string = '';
-  region: string = '';
-  zipCode: string = '';
+  constructor(private http: HttpClient, private router: Router, private activatedRoute: ActivatedRoute) {}
 
-  constructor(private http: HttpClient) {}
-
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.loadCartItems();
     this.calculateTotal();
+
+    // Initialize Stripe.js with your public key
+    this.stripe = await loadStripe('pk_test_51P6JdE09YXY9riuTtwoel6ypg4GYkBee1CpkdmAt4ADvjDdSoNy7xTw6B5mth84BBYVFt0opwN5L3Rxrxp8EI1Ub00565bikyU');
+    this.restaurantId = this.activatedRoute.snapshot.paramMap.get('id');
+    console.log('Restaurant ID:', this.restaurantId);
+  
   }
 
-  // Charger les items du panier depuis localStorage
   loadCartItems(): void {
     const storedCart = localStorage.getItem('cartItems');
     if (storedCart) {
@@ -34,61 +44,44 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  // Calculer le total des prix
   calculateTotal(): void {
     this.total = this.cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   }
 
-  // Action "Pay Now"
-  payNow(): void {
-    const token = localStorage.getItem('token'); // Récupérer le token depuis le localStorage
-
-    // Vérifier que le token est disponible
-    if (!token) {
-      console.error('Token not found in localStorage!');
-      alert('You need to log in to complete the payment.');
-      return;
-    }
-
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`, // Ajouter le token au header Authorization
-      'Content-Type': 'application/json'  // Définir le type de contenu (optionnel)
-    });
-
-    // Vérification des informations de livraison
-    if (!this.shippingInfo.fullName || !this.shippingInfo.phoneNumber || !this.shippingInfo.address || !this.shippingInfo.city || !this.shippingInfo.region || !this.shippingInfo.zipCode) {
-      alert('Please fill in all the shipping information.');
-      return;
-    }
-
-    // Format des données pour correspondre à ce que le backend attend
-    const orderData = {
-      items: this.cartItems.map(item => ({
-        mealId: item.id,  // Assurez-vous que chaque élément a un 'id' correspondant
-        quantity: item.quantity
-      })),
-      total: this.total,
-      shippingInfo: {
-        fullName: this.fullName,
-        phoneNumber: this.phoneNumber,
-        address: this.address,
-        city: this.city,
-        region: this.region,
-        zipCode: this.zipCode
-      }
+  handleCheckout(): void {
+    console.log('Checkout button clicked');
+  
+    // Stocker shippingInfo séparément
+    localStorage.setItem('shippingInfo', JSON.stringify(this.shippingInfo));
+  
+    const order = {
+      orderDate: new Date(),
+      status: 'PENDING',
+      totalAmount: this.total,
+      user: { id: localStorage.getItem('userId') },
+      meals: this.cartItems,
+      shippingInfo: this.shippingInfo, // Vous pouvez laisser ceci ici pour l'instant
     };
-
-    // Faire la requête HTTP POST
-    this.http.post('http://localhost:8080/api/orders/create-order-with-delivery', orderData, { headers })
-      .subscribe(
-        (response) => {
-          console.log('Order created successfully:', response);
-          alert('Order created and delivery assigned!');
-        },
-        (error) => {
-          console.error('Error creating order:', error);
-          alert('Failed to create the order. Please try again.');
-        }
-      );
+  
+    if (this.restaurantId) {
+      localStorage.setItem('restaurantId', this.restaurantId);
+    }
+  
+    localStorage.setItem('pendingOrder', JSON.stringify(order));
+  
+    this.http.post('http://localhost:8080/api/payment/create-checkout-session', { totalAmount: this.total })
+      .subscribe((paymentResponse: any) => {
+        console.log('Stripe Checkout session created:', paymentResponse);
+  
+        this.stripe.redirectToCheckout({ sessionId: paymentResponse.sessionId })
+          .then((result: any) => {
+            if (result.error) {
+              console.error('Error redirecting to Stripe Checkout:', result.error.message);
+            }
+          });
+      }, (error) => {
+        console.error('Error creating payment session:', error);
+      });
   }
+  
 }

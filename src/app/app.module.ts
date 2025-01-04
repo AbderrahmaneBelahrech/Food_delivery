@@ -24,6 +24,11 @@ import { CardDialogComponent } from './components/card-dialog/card-dialog.compon
 import { MatDialogModule } from '@angular/material/dialog';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { MatSelectModule } from '@angular/material/select';
+import { RegisterDeliveryComponent } from './pages/register-delivery/register-delivery.component';
+import { DashboardDeliveryComponent } from './dashboard-delivery/dashboard-delivery.component';
+import { SuccessComponent } from './pages/success/success.component';
+import { ErrorComponent } from './pages/error/error.component';
+import { TrakingOrderComponent } from './pages/traking-order/traking-order.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +42,11 @@ import { MatSelectModule } from '@angular/material/select';
     HeaderComponent,
     CardDialogComponent,
     CheckoutComponent,
+    RegisterDeliveryComponent,
+    DashboardDeliveryComponent,
+    SuccessComponent,
+    ErrorComponent,
+    TrakingOrderComponent,
   ],
   imports: [
     BrowserModule,

@@ -120,9 +120,21 @@ export class ResteauProduitsComponent implements OnInit {
     }
   }
 
-  // Redirect to checkout
-  navigateToCheckout(): void {
-    const restaurantId = this.restaurant.id; // Assume the restaurant has an `id`
-    this.router.navigate([`/restaurant/${restaurantId}/checkout`]);
+navigateToCheckout(): void {
+  if (this.restaurant.latitude && this.restaurant.longitude) {
+    localStorage.setItem(
+      'restaurantLocation',
+      JSON.stringify({
+        latitude: this.restaurant.latitude,
+        longitude: this.restaurant.longitude,
+      })
+    );
+  } else {
+    console.warn('Latitude et longitude non disponibles pour ce restaurant');
   }
+
+  const restaurantId = this.restaurant.id;
+  this.router.navigate([`/restaurant/${restaurantId}/checkout`]);
+}
+
 }

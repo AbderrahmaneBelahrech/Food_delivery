@@ -1,0 +1,20 @@
+<app-header></app-header>
+
+<div class="header">
+  <div class="status-container">
+    <div class="status" [class.active]="currentStep === 1">En cours</div>
+    <div class="status" [class.active]="currentStep === 2">En route</div>
+    <div class="status" [class.active]="currentStep === 3">Livré</div>
+    <div class="progress-bar" [style.width]="progressWidth"></div>
+  </div>
+</div>
+
+<div class="map-container">
+  <iframe 
+    *ngIf="mapUrl" 
+    [src]="mapUrl" 
+    class="waze-map">
+  </iframe>
+  
+  <p *ngIf="!mapUrl" class="error-message">La localisation du restaurant n'est pas disponible.</p>
+</div>

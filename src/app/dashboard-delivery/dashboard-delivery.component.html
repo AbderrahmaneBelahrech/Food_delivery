@@ -1,0 +1,25 @@
+<header class="app-header">
+  <div class="logo-container">
+    <img src="assets/logoDelivry.png" alt="Logo" class="logo" />
+  </div>
+  <div><span class="app-title">Dashboard Livreur</span></div>
+  <div class="logout-container" (click)="logout()">
+    <i class="logout-icon fas fa-sign-out-alt"></i>
+    <span class="logout-text">Déconnexion</span>
+  </div>
+</header>
+
+<h2 style="text-align: center; margin-bottom: 20px; margin-top: 35px;">Commandes Assignées</h2>
+
+<div class="cards-container">
+  <div class="card" *ngFor="let delivery of deliveries">
+    <h3>ID Commande: {{ delivery.order.id }}</h3>
+    <p><strong>Emplacement Actuel:</strong> {{ delivery.currentLocation }}</p>
+    <p><strong>Temps de Livraison Estimé:</strong> {{ delivery.estimatedDeliveryTime }}</p>
+    <p><strong>ID de Suivi:</strong> {{ delivery.trackingId }}</p>
+  </div>
+  
+  <div *ngIf="deliveries.length === 0">
+    <p class="no-orders">Aucune commande assignée pour le moment.</p>
+  </div>
+</div>

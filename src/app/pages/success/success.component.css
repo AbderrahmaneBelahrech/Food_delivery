@@ -1,0 +1,60 @@
+.success-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.check-icon {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.checkmark {
+  width: 100%;
+  height: 100%;
+  animation: scaleUp 0.4s ease-in-out forwards;
+}
+
+.checkmark__circle {
+  stroke: #4caf50;
+  stroke-width: 2;
+  animation: drawCircle 1s ease-out forwards;
+}
+
+.checkmark__check {
+  stroke: #4caf50;
+  stroke-width: 2;
+  stroke-linecap: round;
+  animation: drawCheck 0.5s ease-in-out 0.5s forwards;
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes drawCircle {
+  from {
+    stroke-dasharray: 0, 157;
+  }
+  to {
+    stroke-dasharray: 157, 157;
+  }
+}
+
+@keyframes drawCheck {
+  from {
+    stroke-dasharray: 0, 36;
+  }
+  to {
+    stroke-dasharray: 36, 36;
+  }
+}

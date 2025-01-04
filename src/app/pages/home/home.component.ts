@@ -75,6 +75,7 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+  
 
   // Méthode pour rediriger vers les détails d'un restaurant
   viewRestaurantDetails(id: number): void {
@@ -97,4 +98,6 @@ export class HomeComponent implements OnInit {
       );
     }
   }
+ 
+  
 }

@@ -1,0 +1,72 @@
+<div class="register-delivery-container">
+    <!-- Formulaire d'inscription -->
+    <div class="register-form">
+      <h1>Inscription Livreur</h1>
+      <form (submit)="registerDelivery($event)">
+        <label>
+          Nom
+          <input type="text" placeholder="Nom complet" [(ngModel)]="name" name="name" required />
+        </label>
+  
+        <label>
+          Email
+          <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required />
+        </label>
+  
+        <label>
+          Téléphone
+          <input type="tel" placeholder="+212 6XX-XXXXXX" [(ngModel)]="phone" name="phone" required />
+        </label>
+  
+        <label>
+          Mot de passe
+          <input type="password" placeholder="Mot de passe" [(ngModel)]="password" name="password" required />
+        </label>
+  
+        <label>
+          Ville
+          <select [(ngModel)]="city" name="city" required>
+            <option value="Marrakech">Marrakech</option>
+            <option value="Casablanca">Casablanca</option>
+            <option value="Rabat">Rabat</option>
+            <option value="Tanger">Tanger</option>
+          </select>
+        </label>
+  
+        <label>
+          Moyen de transport
+          <div class="transport-options">
+            <input type="radio" [(ngModel)]="vehicleType" name="vehicleType" value="Moto" required /> Moto
+            <input type="radio" [(ngModel)]="vehicleType" name="vehicleType" value="Voiture" /> Voiture
+            <input type="radio" [(ngModel)]="vehicleType" name="vehicleType" value="Vélo" /> Vélo
+          </div>
+        </label>
+  
+        <button type="submit" class="submit-btn">Créer le compte</button>
+      </form>
+    </div>
+  
+    <!-- Pop-up de confirmation après inscription -->
+    <div *ngIf="showPopup" class="popup">
+      <p>Compte créé avec succès ! Faites maintenant le login.</p>
+      <button (click)="closePopup()">Fermer</button>
+    </div>
+  
+    <!-- Formulaire de connexion -->
+    <div class="login-form">
+      <h1>Connexion Livreur</h1>
+      <form (submit)="loginDelivery($event)">
+        <label>
+          Email
+          <input type="email" placeholder="Email" [(ngModel)]="loginEmail" name="email" required />
+        </label>
+  
+        <label>
+          Mot de passe
+          <input type="password" placeholder="Mot de passe" [(ngModel)]="loginPassword" name="password" required />
+        </label>
+  
+        <button type="submit" class="submit-btn">Se connecter</button>
+      </form>
+    </div>
+  </div>

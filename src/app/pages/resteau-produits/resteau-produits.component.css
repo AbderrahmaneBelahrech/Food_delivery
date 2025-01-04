@@ -298,7 +298,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-left: auto; /* Aligner les actions à droite */
+  margin-left: auto;
+  flex-direction: column;
 }
 
 /* Bouton d'icône (éditer et supprimer) */

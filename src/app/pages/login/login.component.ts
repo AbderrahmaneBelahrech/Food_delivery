@@ -14,7 +14,7 @@ export class LoginComponent {
   password: string = "";
 
   constructor(private router: Router, private http: HttpClient, private snackBar: MatSnackBar) {}
-  
+
   ngOnInit(): void {
     // Check if the token is already in localStorage
     if (localStorage.getItem('token')) {
@@ -53,4 +53,6 @@ export class LoginComponent {
       }
     );
   }
+    
 }
+

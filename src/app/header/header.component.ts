@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  userName: string = '';
   email: string = '';
   phoneNumber: string = '';
   address: string = '';
@@ -21,7 +20,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     
       this.loadUserProfile();
-    
+
   }
 
   isLoggedIn() {
@@ -36,77 +35,57 @@ export class HeaderComponent implements OnInit {
     this.editProfileModalVisible = false;
   }
 
-  loadUserProfile() {
+  loadUserProfile(): void {
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
 
     if (token && userId) {
-      
-      const headers = new HttpHeaders({
-        Authorization: `Bearer ${token}`,
-      });
+      const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
 
       this.http.get<any>(`http://localhost:8080/api/users/${userId}`, { headers }).subscribe(
         user => {
-          this.userName = user.username;
           this.email = user.email;
           this.phoneNumber = user.phoneNumber;
           this.address = user.address;
-
-          this.cdRef.detectChanges();
         },
         error => {
-          console.error('Erreur lors de la récupération du profil : ', error);
+          console.error('Failed to load profile:', error);
         }
       );
     }
   }
 
-  // Gérer le changement de l'image de profil
-
-
-  onSubmit() {
+  onSubmit(): void {
     const userId = localStorage.getItem('userId');
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    });
-  
-    if (userId) {
-      const updatedUser = {
-        username: this.userName,
-        email: this.email,
-        phoneNumber: this.phoneNumber,
-        address: this.address,
-      };
-  
+    const token = localStorage.getItem('token');
+
+    if (userId && token) {
+      const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
+      const updatedUser = { email: this.email, phoneNumber: this.phoneNumber, address: this.address };
+
       this.http.put<any>(`http://localhost:8080/api/users/${userId}`, updatedUser, { headers }).subscribe(
         response => {
-          console.log('Profil mis à jour', response);
-  
-          // Afficher une alerte de succès
-          alert('Profil mis à jour avec succès !');
-
-          this.loadUserProfile();
-          
-          this.closeEditProfileModal();
+          console.log('Profile updated:', response);
+          localStorage.setItem('token', response.token); // Update token
+          alert('Profile updated successfully!');
+          this.editProfileModalVisible = false;
         },
         error => {
-          console.error('Erreur lors de la mise à jour', error);
-  
-          // Afficher une alerte d'erreur
-          alert('Erreur lors de la mise à jour du profil.');
+          console.error('Failed to update profile:', error);
+          alert('Failed to update profile.');
         }
       );
     }
   }
-  
+
+  logout(): void {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
 
   toggleMenu() {
     this.menuVisible = !this.menuVisible;
   }
 
-  logout() {
-    localStorage.clear();
-    this.router.navigate(['/login']);
-  }
+
 }
