@@ -30,7 +30,7 @@ export class SuccessComponent implements OnInit {
           console.log('Order saved with status PAID:', response);
           
           // On vide le localStorage
-          localStorage.removeItem('pendingOrder');
+          
           localStorage.removeItem('cartItems');
     
           setTimeout(() => {

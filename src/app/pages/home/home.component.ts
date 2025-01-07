@@ -33,7 +33,39 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.fetchRestaurants();
     this.fetchCategories();
+  
   }
+  
+  // Méthode pour demander la localisation
+  requestUserLocation(): void {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+  
+          // Stocker les coordonnées dans le localStorage
+          localStorage.setItem('latitude', latitude.toString());
+          localStorage.setItem('longitude', longitude.toString());
+  
+          console.log('Localisation enregistrée:', { latitude, longitude });
+          alert('Localisation enregistrée avec succès.');
+        },
+        (error) => {
+          console.error('Erreur lors de la récupération de la localisation:', error.message);
+          if (error.code === error.PERMISSION_DENIED) {
+            alert('Vous avez refusé la permission de localisation.');
+          } else {
+            alert('Une erreur est survenue lors de la récupération de votre position.');
+          }
+        }
+      );
+    } else {
+      console.error('La géolocalisation n’est pas supportée par ce navigateur.');
+      alert('Votre navigateur ne supporte pas la géolocalisation.');
+    }
+  }
+  
 
   // Fonction pour récupérer tous les restaurants
   fetchRestaurants(): void {

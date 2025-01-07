@@ -1,128 +1,177 @@
 /* Container principal pour les formulaires */
 .register-delivery-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 30px;
-  }
-  
-  /* Formulaire d'inscription et de connexion */
-  .register-form, .login-form {
-    width: 48%;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .register-form h1, .login-form h1 {
-    color: #14a082;
-    font-size: 1.8rem;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  /* Formulaire générique */
-  label {
-    display: block;
-    margin-bottom: 15px;
-    font-weight: 500;
-    color: #333;
-  }
-  
-  input[type="text"], input[type="email"], input[type="tel"], input[type="password"], select {
-    width: 100%;
-    padding: 12px 15px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    margin-top: 5px;
-    font-size: 1rem;
-    background-color: #f9f9f9;
-    transition: border 0.3s ease;
-  }
-  
-  input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, input[type="password"]:focus, select:focus {
-    border-color: #14a082;
-    outline: none;
-  }
-  
-  /* Radio buttons pour moyen de transport */
-  .transport-options {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
-  
-  .transport-options input[type="radio"] {
-    margin-right: 10px;
-  }
-  
-  .submit-btn {
-    width: 100%;
-    padding: 15px;
-    background-color: #14a082;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .submit-btn:hover {
-    background-color: #0f8670;
-  }
-  
-  .submit-btn:active {
-    background-color: #0a6d55;
-  }
-  
-  /* Pop-up de confirmation */
-  .popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 30px;
-    border-radius: 10px;
-    color: #fff;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    z-index: 999;
-  }
-  
-  .popup p {
-    margin-bottom: 20px;
-    font-size: 1.2rem;
-  }
-  
-  .popup button {
-    padding: 10px 20px;
-    background-color: #0f8670;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  
-  .popup button:hover {
-    background-color: #14a082;
-  }
-  
-  /* Responsivité : écran mobile */
-  @media (max-width: 768px) {
-    .register-delivery-container {
-      flex-direction: column;
-      gap: 20px;
-    }
-  
-    .register-form, .login-form {
-      width: 100%;
-    }
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 30px;
+}
+
+/* Formulaire d'inscription et de connexion */
+.register-form, .login-form {
+  width: 48%;
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+
+.register-form:hover, .login-form:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Titres modernisés avec effet de couleur */
+.register-form h1, .login-form h1 {
+  color: #ff5722; /* Jaune doré */
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Formulaire générique */
+label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: 500;
+  color: #333;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+}
+
+input[type="text"], input[type="email"], input[type="tel"], input[type="password"], select {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-top: 5px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+}
+
+input:focus, select:focus {
+  border-color: #ff5722;
+  outline: none;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+/* Options de transport */
+.transport-icons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+  gap: 15px;
+}
+
+.transport-option {
+  cursor: pointer;
+  padding: 20px;
+  border-radius: 12px;
+  border: 2px solid #ddd;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  text-align: center;
+  flex-grow: 1;
+  max-width: 150px;
+}
+
+.transport-option img {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 8px;
+}
+
+.transport-option p {
+  font-size: 1rem;
+  color: #555;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.transport-option:hover, .transport-option.selected {
+  border-color: #ff5722;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(255, 215, 0, 0.3);
+  background-color: #fffbe6;
+}
+
+/* Bouton de soumission */
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #ff5722;
+  transform: scale(1.05);
+}
+
+.submit-btn:active {
+  background-color: #ffb700;
+}
+
+/* Pop-up de confirmation */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  border-radius: 10px;
+  color: #333;
+  background-color: #ff5722;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  z-index: 999;
+}
+
+.popup p {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.popup button {
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #ff5722;
+  border: 2px solid #ff5722;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.popup button:hover {
+  background-color: #ff5722;
+  color: white;
+}
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.livreur-logo {
+  width: 100px;  /* Ajuste la taille du logo */
+  height: auto;
+}

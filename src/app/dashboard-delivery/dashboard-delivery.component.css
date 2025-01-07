@@ -96,3 +96,18 @@
   font-size: 1.2em;
   color: #ff5722;
 }
+.shipping-info {
+  background-color: #f9f9f9;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.shipping-info h4 {
+  margin-bottom: 10px;
+}
+
+.shipping-info p {
+  margin: 5px 0;
+}

@@ -129,3 +129,17 @@
     padding: 10px 0;
     margin-top: 1rem;
 }
+
+.user-icon {
+  font-size: 1.5rem; /* Ajuster la taille de l'icône */
+  color: #212245; /* Couleur */
+  cursor: pointer;
+  margin-right: 10px; /* Espace entre l'icône et le reste du contenu */
+  vertical-align: middle;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espace entre les éléments */
+}

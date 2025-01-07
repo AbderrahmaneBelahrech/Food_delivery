@@ -7,7 +7,7 @@
 
       <!-- Si l'utilisateur est connecté -->
       <div *ngIf="isLoggedIn()" class="profile" (click)="toggleMenu()">
-        <img src="../../../assets/profil.png" alt="Profile" class="profile-image"/>
+        <i class="ri-user-line user-icon"></i>
 
         <div *ngIf="menuVisible" class="dropdown-menu">
           <button (click)="openEditProfileModal()">Modifier profil</button>

@@ -164,3 +164,33 @@ select:focus {
   text-align: center;
   margin-top: 20px;
 }
+
+
+input.error, select.error {
+  border: 2px solid red;  /* Bordure rouge pour les champs non remplis */
+  background-color: white;
+  outline: none;
+}
+
+
+.common__section {
+  background: linear-gradient(
+      rgba(33, 34, 69, 0.7),
+      rgba(33, 34, 69, 0.7)
+    ),
+    url('../checkout/banner-02.1d3252d3.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 80px 0;
+}
+
+.common__section .container {
+  text-align: center;
+}
+
+.text-white {
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+}

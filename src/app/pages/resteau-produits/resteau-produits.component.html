@@ -15,7 +15,11 @@
           <img [src]="restaurant.logoRestau" alt="{{ restaurant.name }}" class="logo" />
         </div>
         <h3 style="margin-top: 50px">{{ restaurant.name }}</h3>
-        <p class="info">{{ restaurant.rating }} | 15-25' | 5.00 MAD | Prime</p>
+        <p class="info">
+          <i class="fa fa-star" style="color: #ff5722;"></i> {{ restaurant.rating }} |
+          <i class="fa-regular fa-clock"></i> 15-25
+        </p>
+        
       </div>
       <div class="content">
         <input
@@ -86,4 +90,3 @@
     </div>
   </div>
 </div>
-<app-footer></app-footer>

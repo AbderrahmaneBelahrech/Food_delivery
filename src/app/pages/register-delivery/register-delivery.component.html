@@ -1,72 +1,99 @@
 <div class="register-delivery-container">
-    <!-- Formulaire d'inscription -->
-    <div class="register-form">
-      <h1>Inscription Livreur</h1>
-      <form (submit)="registerDelivery($event)">
-        <label>
-          Nom
-          <input type="text" placeholder="Nom complet" [(ngModel)]="name" name="name" required />
-        </label>
-  
-        <label>
-          Email
-          <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required />
-        </label>
-  
-        <label>
-          Téléphone
-          <input type="tel" placeholder="+212 6XX-XXXXXX" [(ngModel)]="phone" name="phone" required />
-        </label>
-  
-        <label>
-          Mot de passe
-          <input type="password" placeholder="Mot de passe" [(ngModel)]="password" name="password" required />
-        </label>
-  
-        <label>
-          Ville
-          <select [(ngModel)]="city" name="city" required>
-            <option value="Marrakech">Marrakech</option>
-            <option value="Casablanca">Casablanca</option>
-            <option value="Rabat">Rabat</option>
-            <option value="Tanger">Tanger</option>
-          </select>
-        </label>
-  
-        <label>
-          Moyen de transport
-          <div class="transport-options">
-            <input type="radio" [(ngModel)]="vehicleType" name="vehicleType" value="Moto" required /> Moto
-            <input type="radio" [(ngModel)]="vehicleType" name="vehicleType" value="Voiture" /> Voiture
-            <input type="radio" [(ngModel)]="vehicleType" name="vehicleType" value="Vélo" /> Vélo
+  <!-- Formulaire d'inscription -->
+  <div class="register-form">
+    <div class="logo-container">
+      <img src="https://cdn-icons-png.flaticon.com/512/7541/7541708.png" alt="Logo Livreur" class="livreur-logo">
+    </div>
+    <h1>Inscription Livreur</h1>
+    
+    <form (submit)="registerDelivery($event)">
+      <label>
+        Nom
+        <input type="text" placeholder="Nom complet" [(ngModel)]="name" name="name" required />
+      </label>
+
+      <label>
+        Email
+        <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required />
+      </label>
+
+      <label>
+        Téléphone
+        <input type="tel" placeholder="+212 6XX-XXXXXX" [(ngModel)]="phone" name="phone" required />
+      </label>
+
+      <label>
+        Mot de passe
+        <input type="password" placeholder="Mot de passe" [(ngModel)]="password" name="password" required />
+      </label>
+
+      <label>
+        Ville
+        <select [(ngModel)]="city" name="city" required>
+          <option value="Marrakech">Marrakech</option>
+          <option value="Casablanca">Casablanca</option>
+          <option value="Rabat">Rabat</option>
+          <option value="Tanger">Tanger</option>
+        </select>
+      </label>
+
+      <label>
+        Moyen de transport
+        <div class="transport-icons">
+          <div class="transport-option" [ngClass]="{'selected': vehicleType === 'Moto'}" 
+               (click)="selectVehicle('Moto')">
+            <img src="https://couriers.glovoapp.com/_nuxt/img/motorbike.d9a4844.svg" alt="Moto" />
+            <p>Moto</p>
           </div>
-        </label>
-  
-        <button type="submit" class="submit-btn">Créer le compte</button>
-      </form>
-    </div>
-  
-    <!-- Pop-up de confirmation après inscription -->
-    <div *ngIf="showPopup" class="popup">
-      <p>Compte créé avec succès ! Faites maintenant le login.</p>
-      <button (click)="closePopup()">Fermer</button>
-    </div>
-  
-    <!-- Formulaire de connexion -->
-    <div class="login-form">
-      <h1>Connexion Livreur</h1>
-      <form (submit)="loginDelivery($event)">
-        <label>
-          Email
-          <input type="email" placeholder="Email" [(ngModel)]="loginEmail" name="email" required />
-        </label>
-  
-        <label>
-          Mot de passe
-          <input type="password" placeholder="Mot de passe" [(ngModel)]="loginPassword" name="password" required />
-        </label>
-  
-        <button type="submit" class="submit-btn">Se connecter</button>
-      </form>
-    </div>
+
+          <div class="transport-option" [ngClass]="{'selected': vehicleType === 'Voiture'}" 
+               (click)="selectVehicle('Voiture')">
+            <img src="https://couriers.glovoapp.com/_nuxt/img/car.352e23f.svg" alt="Voiture" />
+            <p>Voiture</p>
+          </div>
+
+          <div class="transport-option" [ngClass]="{'selected': vehicleType === 'Vélo'}" 
+               (click)="selectVehicle('Vélo')">
+            <img src="https://couriers.glovoapp.com/_nuxt/img/bicycle.644742b.svg" alt="Vélo" />
+            <p>Vélo</p>
+          </div>
+
+          <div class="transport-option" [ngClass]="{'selected': vehicleType === 'Marche'}" 
+               (click)="selectVehicle('Marche')">
+            <img src="https://couriers.glovoapp.com/_nuxt/img/walker.748c625.svg" alt="Marche" />
+            <p>Marche</p>
+          </div>
+        </div>
+      </label>
+
+      <button type="submit" class="submit-btn">Créer le compte</button>
+    </form>
   </div>
+
+  <!-- Formulaire de connexion -->
+  <div class="login-form">
+    <div class="logo-container">
+      <img src="https://cdn-icons-png.freepik.com/256/5457/5457799.png?semt=ais_hybrid" alt="Logo Livreur" class="livreur-logo">
+    </div>
+    <h1>Connexion</h1>
+    <form (submit)="loginDelivery($event)">
+      <label>
+        Email
+        <input type="email" placeholder="Email" [(ngModel)]="loginEmail" name="email" required />
+      </label>
+
+      <label>
+        Mot de passe
+        <input type="password" placeholder="Mot de passe" [(ngModel)]="loginPassword" name="password" required />
+      </label>
+
+      <button type="submit" class="submit-btn">Se connecter</button>
+    </form>
+  </div>
+
+  <!-- Pop-up dynamique -->
+  <div *ngIf="showPopup" class="popup" [ngStyle]="{'background-color': popupColor}">
+    <p>{{ popupMessage }}</p>
+    <button (click)="closePopup()">Fermer</button>
+  </div>
+</div>

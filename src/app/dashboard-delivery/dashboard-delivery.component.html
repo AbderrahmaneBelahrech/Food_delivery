@@ -14,12 +14,19 @@
 <div class="cards-container">
   <div class="card" *ngFor="let delivery of deliveries">
     <h3>ID Commande: {{ delivery.order.id }}</h3>
-    <p><strong>Emplacement Actuel:</strong> {{ delivery.currentLocation }}</p>
-    <p><strong>Temps de Livraison Estimé:</strong> {{ delivery.estimatedDeliveryTime }}</p>
-    <p><strong>ID de Suivi:</strong> {{ delivery.trackingId }}</p>
+
+    <!-- Ajout des informations de livraison -->
+    <h4>Informations de Livraison</h4>
+    <p><strong>Nom complet:</strong> {{ delivery.shippingInfo.fullName }}</p>
+    <p><strong>Adresse:</strong> {{ delivery.shippingInfo.address }}</p>
+    <p><strong>Ville:</strong> {{ delivery.shippingInfo.city }}</p>
+    <p><strong>Région:</strong> {{ delivery.shippingInfo.region }}</p>
+    <p><strong>Code postal:</strong> {{ delivery.shippingInfo.zipCode }}</p>
+    <p><strong>Téléphone:</strong> {{ delivery.shippingInfo.phoneNumber }}</p>
   </div>
-  
+
   <div *ngIf="deliveries.length === 0">
     <p class="no-orders">Aucune commande assignée pour le moment.</p>
   </div>
 </div>
+
